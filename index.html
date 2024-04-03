@@ -15,8 +15,6 @@
     }
     #calculator-container {
         text-align: center;
-    }
-    h1 {
         margin-bottom: 20px;
     }
     #calculator {
@@ -28,21 +26,20 @@
         background-color: #fff;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 10px;
-        padding-bottom: 10px;
+        grid-gap: 5px;
+        padding-bottom: 5px;
     }
     input[type="text"] {
         grid-column: 1 / span 4;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         padding: 10px;
         font-size: 18px;
         text-align: right;
         border: none;
         outline: none;
     }
-    #answer {
+    #result {
         grid-column: 1 / span 4;
-        margin-bottom: 10px;
         padding: 10px;
         font-size: 18px;
         text-align: right;
@@ -73,7 +70,7 @@
     <h1>React Calculator</h1>
     <div id="calculator">
         <input type="text" id="display" disabled>
-        <div id="answer"></div>
+        <div id="result"></div>
         <button onclick="addToDisplay('7')">7</button>
         <button onclick="addToDisplay('8')">8</button>
         <button onclick="addToDisplay('9')">9</button>
@@ -100,30 +97,19 @@
 
     function clearDisplay() {
         document.getElementById('display').value = '';
-        document.getElementById('answer').textContent = '';
+        document.getElementById('result').textContent = '';
     }
 
     function calculate() {
         let input = document.getElementById('display').value;
         try {
-            // Evaluate the input expression
             let result = eval(input);
-            
-            // Check if the result is a finite number and not NaN
             if (!isFinite(result) || isNaN(result)) {
                 throw new Error('Invalid expression');
             }
-            
-            // Check if the result is Infinity (division by zero)
-            if (result === Infinity || result === -Infinity) {
-                throw new Error('Division by zero');
-            }
-
-            // Display the result
-            document.getElementById('answer').textContent = result;
+            document.getElementById('result').textContent = result;
         } catch (error) {
-            // Display 'Error' if an error occurs during calculation
-            document.getElementById('answer').textContent = 'Error';
+            document.getElementById('result').textContent = 'Error';
         }
     }
 </script>
